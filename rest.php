@@ -28,7 +28,7 @@ list($type, $receivedKey) = explode(' ', $authHeader);
 
 if ($type !== 'Bearer' || $receivedKey !== $api_key) {
     http_response_code(401);
-    echo json_encode(["error" => "Unauthorized"]);
+    echo json_encode(["error" => "Unauthorized. Key invalid"]);
     exit();
 }
 
