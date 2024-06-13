@@ -74,10 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
+
+    $conn->close();
 } else {
     http_response_code(405);
     echo json_encode(["error" => "Method not allowed"]);
 }
 
-$conn->close();
+
 ?>
