@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mac_address = isset($json_data['mac_address']) ? $json_data['mac_address'] : null;
     $overall_result = isset($json_data['overall_result']) ? $json_data['overall_result'] : null;
     $device_type = isset($json_data['device_type']) ? $json_data['device_type'] : null;
-    $test_result = isset($json_data['additional_info']) ? $json_data['additional_info'] : null;
+    $additional_info = isset($json_data['additional_info']) ? $json_data['additional_info'] : null;
 
     // Validate required fields
     if ($mac_address === null || $overall_result === null || $device_type === null) {
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Prepare and bind
     $stmt = $conn->prepare("INSERT INTO test_results (timestamp, mac_address, overall_result, device_type, test_result) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $timestamp, $mac_address, $overall_result, $device_type, $test_result);
+    $stmt->bind_param("sssss", $timestamp, $mac_address, $overall_result, $device_type, json_encode($additional_info));
 
     // Execute and check for errors
     if ($stmt->execute()) {
