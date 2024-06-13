@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mac_address = isset($json_data['mac_address']) ? $json_data['mac_address'] : null;
     $overall_result = isset($json_data['overall_result']) ? $json_data['overall_result'] : null;
     $device_type = isset($json_data['device_type']) ? $json_data['device_type'] : null;
-    $test_result = json_encode($json_data);
+    $test_result = isset($json_data['additional_info']) ? $json_data['additional_info'] : null;
 
     // Validate required fields
     if ($mac_address === null || $overall_result === null || $device_type === null) {
