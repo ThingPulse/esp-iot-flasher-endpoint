@@ -1,6 +1,9 @@
 <?php
 require 'config.php'; // Include your database configuration
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: ' + $allow_origin); // Update with your Angular app's URL
 header('Access-Control-Allow-Methods: POST, OPTIONS');
