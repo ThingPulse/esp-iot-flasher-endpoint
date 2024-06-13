@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-print_r($_SERVER);
-/*
+
+
 // Check for Authorization header
 if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
     http_response_code(401);
@@ -34,7 +34,7 @@ if ($type !== 'Bearer' || $receivedKey !== $api_key) {
     exit();
 }
 
-*/
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the raw POST data
     $data = file_get_contents("php://input");
