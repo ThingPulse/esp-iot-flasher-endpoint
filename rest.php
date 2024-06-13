@@ -6,6 +6,7 @@ header('Access-Control-Allow-Origin: ' + $allow_origin); // Update with your Ang
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
+/*
 // Handle preflight request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
@@ -27,6 +28,7 @@ if ($type !== 'Bearer' || $receivedKey !== $apiKey) {
     echo json_encode(["error" => "Unauthorized"]);
     exit();
 }
+*/
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the raw POST data
