@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Check for Authorization header
 if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
     http_response_code(401);
-    echo json_encode(["error" => "Unauthorized"]);
+    echo json_encode(["error" => "Unauthorized. No header found"]);
     exit();
 }
 
