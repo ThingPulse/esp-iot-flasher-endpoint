@@ -15,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
     exit();
 }
+
+print_r($_SERVER);
 /*
 // Check for Authorization header
 if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
