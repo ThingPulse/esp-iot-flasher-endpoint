@@ -7,7 +7,7 @@ ini_set('display_startup_errors', '1');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: ' . $allow_origin); // Update with your Angular app's URL
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-//header('Access-Control-Allow-Headers: Content-Type, Authorization, origin');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, origin');
 
 
 // Handle preflight request
@@ -17,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Check for Authorization header
-if (!isset($_SERVER['Authorization'])) {
+if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
     http_response_code(401);
     echo json_encode(["error" => "Unauthorized. No header found"]);
     exit();
 }
 
-$authHeader = $_SERVER['Authorization'];
+$authHeader = $_SERVER['HTTP_AUTHORIZATION'];
 list($type, $receivedKey) = explode(' ', $authHeader);
 
 if ($type !== 'Bearer' || $receivedKey !== $api_key) {
