@@ -26,7 +26,7 @@ if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
 list($type, $receivedKey) = explode(' ', $authHeader);
 
-if ($type !== 'Bearer' || $receivedKey !== $apiKey) {
+if ($type !== 'Bearer' || $receivedKey !== $api_key) {
     http_response_code(401);
     echo json_encode(["error" => "Unauthorized"]);
     exit();
