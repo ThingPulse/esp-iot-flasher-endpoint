@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
     // Prepare and bind
     $stmt = $conn->prepare("INSERT INTO test_results (timestamp, mac_address, overall_result, device_type, test_result) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $timestamp, $mac_address, $overall_result, $device_type, $test_result);
