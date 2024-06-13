@@ -17,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Check for Authorization header
-if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
+if (!isset($_SERVER['Authorization'])) {
     http_response_code(401);
     echo json_encode(["error" => "Unauthorized. No header found"]);
     exit();
 }
 
-$authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+$authHeader = $_SERVER['Authorization'];
 list($type, $receivedKey) = explode(' ', $authHeader);
 
 if ($type !== 'Bearer' || $receivedKey !== $api_key) {
