@@ -10,34 +10,36 @@ if ($conn->connect_error) {
 }
 
 // Fetch test runs
-$testRunsSql = "SELECT * FROM test_runs";
+$testRunsSql = "SELECT * FROM test_results order by timestamp desc";
 $testRunsResult = $conn->query($testRunsSql);
 
 if ($testRunsResult->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>Run Name</th><th>Run Date</th><th>Details</th></tr>";
+    echo "<tr><th>Device Type</th><th>Run Date</th><th>Mac</th><th>Details</th></tr>";
 
     while($run = $testRunsResult->fetch_assoc()) {
         $runId = $run['id'];
         echo "<tr>";
-        echo "<td>{$run['run_name']}</td>";
-        echo "<td>{$run['run_date']}</td>";
+        echo "<td>{$run['device_type']}</td>";
+        echo "<td>{$run['timestamp']}</td>";
+        echo "<td>{$run['mac_address']}</td>";
         echo "<td><button onclick='toggleDetails($runId)'>Show Details</button></td>";
         echo "</tr>";
         
         // Fetch test results for each run
-        $testResultsSql = "SELECT * FROM test_results WHERE run_id = $runId";
+        $testResultsSql = "SELECT * FROM test_result_itmes WHERE run_id = $runId";
         $testResultsResult = $conn->query($testResultsSql);
 
         if ($testResultsResult->num_rows > 0) {
             echo "<tr id='details-$runId' style='display:none;'><td colspan='3'>";
             echo "<table border='1'>";
-            echo "<tr><th>Test Name</th><th>Test Result</th></tr>";
+            echo "<tr><th>Test Name</th><th>Value</th><th>Test Result</th></tr>";
 
             while($result = $testResultsResult->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>{$result['test_name']}</td>";
-                echo "<td>{$result['test_result']}</td>";
+                echo "<td>{$result['name']}</td>";
+                echo "<td>{$result['value']}</td>";
+                echo "<td>{$result['result']}</td>";
                 echo "</tr>";
             }
 
