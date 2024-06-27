@@ -27,7 +27,7 @@ if ($testRunsResult->num_rows > 0) {
         echo "</tr>";
         
         // Fetch test results for each run
-        $testResultsSql = "SELECT * FROM test_result_items WHERE run_id = $runId";
+        $testResultsSql = "SELECT * FROM test_result_items WHERE test_id = $runId";
         $testResultsResult = $conn->query($testResultsSql);
 
         if ($testResultsResult->num_rows > 0) {
