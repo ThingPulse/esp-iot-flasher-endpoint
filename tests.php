@@ -15,7 +15,7 @@ $testRunsResult = $conn->query($testRunsSql);
 
 if ($testRunsResult->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>#</th><th>Device Type</th><th>Run Date</th><th>Mac</th><th>Details</th></tr>";
+    echo "<tr><th>#</th><th>Device Type</th><th>Run Date</th><th>Mac</th><th>Result</th><th>Details</th></tr>";
     $idx = 0;
     while($run = $testRunsResult->fetch_assoc()) {
         $runId = $run['id'];
@@ -25,6 +25,7 @@ if ($testRunsResult->num_rows > 0) {
         echo "<td>{$run['device_type']}</td>";
         echo "<td>{$run['timestamp']}</td>";
         echo "<td>{$run['mac_address']}</td>";
+        echo "<td>{$run['overall_result']}</td>";
         echo "<td><button onclick='toggleDetails($runId)'>Show Details</button></td>";
         echo "</tr>";
         
