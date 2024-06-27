@@ -15,11 +15,13 @@ $testRunsResult = $conn->query($testRunsSql);
 
 if ($testRunsResult->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>Device Type</th><th>Run Date</th><th>Mac</th><th>Details</th></tr>";
-
+    echo "<tr><th>#</th><th>Device Type</th><th>Run Date</th><th>Mac</th><th>Details</th></tr>";
+    $idx = 0;
     while($run = $testRunsResult->fetch_assoc()) {
         $runId = $run['id'];
+        $idx++;
         echo "<tr>";
+        echo "<td>{$idx}</td>";
         echo "<td>{$run['device_type']}</td>";
         echo "<td>{$run['timestamp']}</td>";
         echo "<td>{$run['mac_address']}</td>";
