@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch test runs
-$testRunsSql = "SELECT * FROM test_results where timestamp < '2025-01-10' order by timestamp desc";
+$testRunsSql = "SELECT * FROM test_results where timestamp > '2025-01-10' order by timestamp desc";
 $testRunsResult = $conn->query($testRunsSql);
 
 if ($testRunsResult->num_rows > 0) {
